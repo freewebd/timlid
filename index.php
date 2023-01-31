@@ -7,7 +7,6 @@ function debug($str)
     echo '<pre>';
     var_dump($str);
     echo '</pre>';
-    exit;
 }
 
 trait RandomTrait
@@ -23,10 +22,13 @@ class TeamLeadT70
 {
     use RandomTrait;
     public $mood;
+    public $moods;
 
     public function __construct()
     {
+        $this->moods = require 'config/mood.php';
         $this->mood = $this->getMood();
+        $this->changeMoodToWork($this->moods, $this->mood);
     }
 
     public function getMood()
@@ -37,24 +39,29 @@ class TeamLeadT70
             return $k == $valRand;
         }, ARRAY_FILTER_USE_BOTH);
     }
-    public function arrayProcessing($arr)
+    protected function arrayProcessing($arr)
     {
         foreach ($arr as $val) {
             $arr = $val;
         }
         return $arr;
     }
-    public function getMoodProperty($arg)
+    public function changeMoodToWork($moods, $currentMood)
     {
-        $moodProperty = $this->arrayProcessing($this->getMood());
-        return $moodProperty[$arg];
-    }
-    public function changeMoonToWork()
-    {
-
+        $keyIndex = 0;
+        $keyCurrentMood = array_key_first($currentMood);
+                  // debug($keyCurrentMood);
+        foreach ($moods as $key){
+             debug($key);
+            if ($key === $keyCurrentMood){
+                break;     
+            } else{
+                $keyIndex++;
+            }
+        }
+        //debug($keyIndex);
     }
 }
-
 class Junior
 {
     use RandomTrait;
@@ -78,8 +85,9 @@ class Working
     }
     public function start()
     {
-        debug($this->teamLead);
-        
+
+        //debug($this->teamLead);
+
         echo <<<EOT
          
 
