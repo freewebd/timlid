@@ -50,16 +50,16 @@ class TeamLeadT70
     {
         $keyIndex = 0;
         $keyCurrentMood = array_key_first($currentMood);
-                  // debug($keyCurrentMood);
-        foreach ($moods as $key){
-             debug($key);
-            if ($key === $keyCurrentMood){
-                break;     
-            } else{
+        foreach ($moods as $key => $val) {
+            if ($key === $keyCurrentMood) {
+                break;
+            } else {
                 $keyIndex++;
             }
         }
-        //debug($keyIndex);
+        $iterator = new ArrayIterator($moods);
+        $iterator->seek($keyIndex);
+        debug($iterator->current()); 
     }
 }
 class Junior
