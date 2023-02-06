@@ -8,92 +8,13 @@ function debug($str)
     var_dump($str);
     echo '</pre>';
 }
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
+$junior = new Junior();
+$junior->dayWork();
 
-trait RandomTrait
-{
-    public function random(array $arr)
-    {
-        $resultElem = array_rand($arr);
-        return $resultElem;
-    }
-}
-
-class TeamLeadT70
-{
-    use RandomTrait;
-    public $mood;
-    public $moods;
-
-    public function __construct()
-    {
-        $this->moods = require 'config/mood.php';
-        $this->mood = $this->getMood();
-        $this->changeMoodToWork($this->moods, $this->mood);
-    }
-
-    public function getMood()
-    {
-        $arr = require 'config/mood.php';
-        $valRand = $this->random($arr);
-        return array_filter($arr, function ($v, $k) use ($arr, $valRand) {
-            return $k == $valRand;
-        }, ARRAY_FILTER_USE_BOTH);
-    }
-    protected function arrayProcessing($arr)
-    {
-        foreach ($arr as $val) {
-            $arr = $val;
-        }
-        return $arr;
-    }
-    public function changeMoodToWork($moods, $currentMood)
-    {
-        $keyIndex = 0;
-        $keyCurrentMood = array_key_first($currentMood);
-        foreach ($moods as $key => $val) {
-            if ($key === $keyCurrentMood) {
-                break;
-            } else {
-                $keyIndex++;
-            }
-        }
-        $iterator = new ArrayIterator($moods);
-        $iterator->seek($keyIndex);
-        debug($iterator->current()); 
-    }
-}
-class Junior
-{
-    use RandomTrait;
-    public $workQuality;
-
-    public function __construct()
-    {
-        $arr = require 'config/workQuality.php';
-        $this->workQuality = $this->random($arr);
-    }
-}
-class Working
-{
-    protected $teamLead;
-    protected $junior;
-
-    public function __construct()
-    {
-        $this->teamLead = new TeamLeadT70();
-        $this->junior = new Junior();
-    }
-    public function start()
-    {
-
-        //debug($this->teamLead);
-
-        echo <<<EOT
-         
-
-        EOT;
-    }
-}
-
-$workday = new Working();
-$workday->start();
+$t70 = new T70();
+$t70->startMood();
+$t70->changeMood($junior->work);
+echo $t70->sayMood();
