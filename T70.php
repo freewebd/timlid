@@ -38,7 +38,6 @@ class T70
                 $keyIndex++;
             }
         }
-        debug("workJunior - " . $workJunior);
         $countMoods = count($this->moods) - 1;
         if ($workJunior === 1) {
             if ($keyIndex > 0) $keyIndex--;
@@ -48,7 +47,7 @@ class T70
         }
         $iterator = new ArrayIterator($this->moods);
         $iterator->seek($keyIndex);
-        debug($this->currentMood = $iterator->current());
+        $this->currentMood = $iterator->current();
     }
     function sayMood()
     {
