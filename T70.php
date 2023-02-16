@@ -20,13 +20,8 @@ class T70
             "saySpeech" => "Завжди знайдеться один, який зіпсує поганий настрій!"
         ]
     ];
-    public $manager;
-
-    function __construct($mt1001, $hrt1000)
-    {
-        $this->manager['managert1001'] = $mt1001;
-        $this->manager['hrt1000'] = $hrt1000;
-    }
+    public $quantityPraises = 0;
+    public $quantityReprimands = 0;
     /**Рандомно вибрати один з елементів масиву. Вхідні дані $this->moods */
     function startMood()
     {
@@ -46,12 +41,11 @@ class T70
             }
         }
         $countArrMoods = count($this->moods) - 1;
-        if ($workJunior === 1) {
-            $keyIndex > 0 ? $keyIndex-- : $this->manager['managert1001']->countQuantity();
-        }
-        if ($workJunior === 0) {
-            $keyIndex < $countArrMoods ? $keyIndex++ : $this->manager['hrt1000']->countQuantity();
-        }
+        if ($workJunior === 1)
+            $keyIndex > 0 ? $keyIndex-- : $this->quantityPraises++;
+        if ($workJunior === 0)
+            $keyIndex < $countArrMoods ? $keyIndex++ : $this->quantityReprimands++;
+
         $iterator = new ArrayIterator($this->moods);
         $iterator->seek($keyIndex);
         $this->currentMood = $iterator->current();

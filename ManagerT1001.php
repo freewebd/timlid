@@ -1,4 +1,4 @@
 <?php
-class ManagerT1001 extends Report
+class ManagerT1001 extends Manager
 {
 }
