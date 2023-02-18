@@ -1,7 +1,11 @@
 <?php
 abstract class Manager
 {
-    public function showReport(){
-        
+    protected $reportType;
+    function __construct($reportType){
+        $this->reportType = $reportType;
+    }
+    public function getData(T70 $terminator){
+        return $terminator->{$this->reportType};
     }
 }

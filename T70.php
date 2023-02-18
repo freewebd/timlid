@@ -50,6 +50,10 @@ class T70
         $iterator->seek($keyIndex);
         $this->currentMood = $iterator->current();
     }
+    function showReportData($nameData)
+    {
+        return $this->$nameData;
+    }
     function sayMood()
     {
         return $this->currentMood['saySpeech'];
