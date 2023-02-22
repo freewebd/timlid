@@ -45,15 +45,14 @@ class T70
             $keyIndex--;
         if ($workJunior === 0 && $keyIndex < $maxIndexMoods)
             $keyIndex++;
-            $iterator = new ArrayIterator($this->moods);
-            $iterator->seek($keyIndex);
-            $this->currentMood = $iterator->current();
-            
+        $iterator = new ArrayIterator($this->moods);
+        $iterator->seek($keyIndex);
+        $this->currentMood = $iterator->current();
+
         if ($keyIndex === 0 && $workJunior === 1)
             $this->quantityPraises++;
         if ($keyIndex === $maxIndexMoods && $workJunior === 0)
             $this->quantityReprimands++;
-
     }
     function sayMood()
     {
