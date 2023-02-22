@@ -20,8 +20,7 @@ class T70
             "saySpeech" => "Завжди знайдеться один, який зіпсує поганий настрій!"
         ]
     ];
-    public $quantityPraises = 0;
-    public $quantityReprimands = 0;
+
     /**Рандомно вибрати один з елементів масиву. Вхідні дані $this->moods */
     function startMood()
     {
@@ -50,9 +49,12 @@ class T70
         $this->currentMood = $iterator->current();
 
         if ($keyIndex === 0 && $workJunior === 1)
-            $this->quantityPraises++;
+            $this->sms();
         if ($keyIndex === $maxIndexMoods && $workJunior === 0)
-            $this->quantityReprimands++;
+            $this->sms();
+    }
+    function sms()
+    {
     }
     function sayMood()
     {
