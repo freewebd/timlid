@@ -40,19 +40,20 @@ class T70
                 $keyIndex++;
             }
         }
-        $countArrMoods = count($this->moods) - 1;
-        if ($workJunior === 1)
-            $keyIndex > 0 ? $keyIndex-- : $this->quantityPraises++;
-        if ($workJunior === 0)
-            $keyIndex < $countArrMoods ? $keyIndex++ : $this->quantityReprimands++;
+        $maxIndexMoods = count($this->moods) - 1;
+        if ($workJunior === 1 && $keyIndex > 0)
+            $keyIndex--;
+        if ($workJunior === 0 && $keyIndex < $maxIndexMoods)
+            $keyIndex++;
+            $iterator = new ArrayIterator($this->moods);
+            $iterator->seek($keyIndex);
+            $this->currentMood = $iterator->current();
+            
+        if ($keyIndex === 0 && $workJunior === 1)
+            $this->quantityPraises++;
+        if ($keyIndex === $maxIndexMoods && $workJunior === 0)
+            $this->quantityReprimands++;
 
-        $iterator = new ArrayIterator($this->moods);
-        $iterator->seek($keyIndex);
-        $this->currentMood = $iterator->current();
-    }
-    function showReportData($nameData)
-    {
-        return $this->$nameData;
     }
     function sayMood()
     {
