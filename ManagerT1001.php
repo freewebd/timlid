@@ -1,5 +1,5 @@
 <?php
-class ManagerT1001 extends Manager
+class ManagerT1001
 {    
     public $quantityPraises = 0;
     function getNewPraise() {
