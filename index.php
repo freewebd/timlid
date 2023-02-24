@@ -22,6 +22,12 @@ $t70->startMood();
 $t70->changeMood($junior->work);
 echo $t70->sayMood() . "<br>";
 
+if ($t70->wasPraise()) {
+    $mt1001->getNewPraise();
+}
+if ($t70->wasRebuke()) {
+    $hrt1000->getNewRebuke();
+}
 
 
 echo "Дані отримав менеджер 1001:" . $mt1001->quantityPraises . "<br>";
